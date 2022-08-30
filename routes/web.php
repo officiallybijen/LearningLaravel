@@ -20,6 +20,7 @@ Route::get('/hi', function () {
 Route::get('/blog/{which}',function($slug){
     $path = __DIR__ ."/../resources/blogs/$slug.html";
     
+
     if(! file_exists($path)){
         // abort(404);
         return redirect("/hi");
@@ -30,4 +31,4 @@ Route::get('/blog/{which}',function($slug){
     return view('blog',[
         'blog'=>$blog
     ]);
-});
+})->where('which','[A-z_\-]+');
