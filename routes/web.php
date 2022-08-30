@@ -24,16 +24,18 @@ Route::get('/hi', function () {
     // );
 
 
-    $files=File::files(resource_path("blogs"));
+    // $files=File::files(resource_path("blogs"));
 
-    $blogs=array_map(function($file){
-        $document = YamlFrontMatter::parseFile($file);
-        return new Blog(
-            $document->title,
-            $document->slug,
-            $document->body()
-        );
-    },$files);
+    $blogs=Blog::all();
+
+    // $blogs=array_map(function($file){
+    //     $document = YamlFrontMatter::parseFile($file);
+    //     return new Blog(
+    //         $document->title,
+    //         $document->slug,
+    //         $document->body()
+    //     );
+    // },$files);
 
     // foreach($files as $file){
     //     $document = YamlFrontMatter::parseFile($file);
