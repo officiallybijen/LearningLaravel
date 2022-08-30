@@ -32,9 +32,11 @@
                 return new Blog(
                     $document->title,
                     $document->slug,
-                    $document->body()
+                    $document->body(),
+                    $document->date
                 );
-            });
+            })
+            ->sortByDesc('title');
 
         //    return File::files(resource_path("blogs/"));
         }
