@@ -5,8 +5,10 @@
         <script src="/app.js"></script>
     </head>
     <body>
-        <p>
-            hello 
-        </p>
+        <ul>
+            <li><a href="/blog">Blog 1</a></li>
+            <li><a href="/blog">Blog 2</a></li>
+            <li><a href="/blog">Blog 3</a></li>
+        </ul>
     </body>
 </html>
