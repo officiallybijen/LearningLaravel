@@ -26,7 +26,13 @@ Route::get('/blog/{which}',function($slug){
         return redirect("/hi");
     }
 
-    $blog=file_get_contents($path);
+    $blog = cache()->remember('blog.{which}',2,fn() => file_get_contents($path));
+
+    // $blog = cache()->remember('blog.{which}',2,function() use ($path){
+    //     return file_get_contents($path);
+    // });
+
+    // $blog=file_get_contents($path);
     
     return view('blog',[
         'blog'=>$blog
