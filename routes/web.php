@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Blog;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -86,5 +87,11 @@ Route::get('/blog/{blog:slug}',function(Blog $blog){
 Route::get('/categories/{category:slug}',function(Category $category){
     return view('hi',[
         'blogs'=>$category->blog
+    ]);
+});
+
+Route::get('/user/{user}',function(User $user){
+    return view('hi',[
+        'blogs'=>$user->blog
     ]);
 });
