@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Models\Blog;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 
 
@@ -55,7 +55,7 @@ Route::get('/blog/{blog:slug}',function(Blog $blog){
 
     //find post by its slug and pass it to view called post
 
-    // $blog=Blog::find($blog)->first();
+    // $blog=Blog::find($blog)->first();    
 
     return view('blog',[
         'blog'=>$blog
