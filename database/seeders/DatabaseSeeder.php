@@ -18,63 +18,68 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        User::truncate();
-        Category::truncate();
-        Blog::truncate();
+        // User::truncate();
+        // Category::truncate();
+        // Blog::truncate();
 
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            "name"=>"bijen"
+        ]);
 
+        Blog::factory(10)->create([
+            "user_id"=>$user->id
+        ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
 
-      $travel =  Category::create([
-            "name"=>"travel",
-            "slug"=>"travel"
-        ]);
+    //   $travel =  Category::create([
+    //         "name"=>"travel",
+    //         "slug"=>"travel"
+    //     ]);
         
-       $personal = Category::create([
-            "name"=>"personal",
-            "slug"=>"personal"
-        ]);
+    //    $personal = Category::create([
+    //         "name"=>"personal",
+    //         "slug"=>"personal"
+    //     ]);
         
-       $sports = Category::create([
-            "name"=>"sports",
-            "slug"=>"sports"
-        ]);
+    //    $sports = Category::create([
+    //         "name"=>"sports",
+    //         "slug"=>"sports"
+    //     ]);
 
-        Blog::create([
-            "title"=>"my visit",
-            "category_id"=>$travel->id,
-            "user_id"=>$user->id,
-            "slug"=>"visit",
-            "body"=>"visit was good"
-        ]);
+    //     Blog::create([
+    //         "title"=>"my visit",
+    //         "category_id"=>$travel->id,
+    //         "user_id"=>$user->id,
+    //         "slug"=>"visit",
+    //         "body"=>"visit was good"
+    //     ]);
 
-        Blog::create([
-            "title"=>"cr",
-            "category_id"=>$sports->id,
-            "user_id"=>$user->id,
-            "slug"=>"cr",
-            "body"=>"ronaldo"
-        ]);
+    //     Blog::create([
+    //         "title"=>"cr",
+    //         "category_id"=>$sports->id,
+    //         "user_id"=>$user->id,
+    //         "slug"=>"cr",
+    //         "body"=>"ronaldo"
+    //     ]);
 
-        Blog::create([
-            "title"=>"kd",
-            "category_id"=>$sports->id,
-            "user_id"=>$user->id,
-            "slug"=>"kd",
-            "body"=>"kevin durant"
-        ]);
+    //     Blog::create([
+    //         "title"=>"kd",
+    //         "category_id"=>$sports->id,
+    //         "user_id"=>$user->id,
+    //         "slug"=>"kd",
+    //         "body"=>"kevin durant"
+    //     ]);
 
-        Blog::create([
-            "title"=>"my life",
-            "category_id"=>$personal->id,
-            "user_id"=>$user->id,
-            "slug"=>"life",
-            "body"=>"life is good"
-        ]);
+    //     Blog::create([
+    //         "title"=>"my life",
+    //         "category_id"=>$personal->id,
+    //         "user_id"=>$user->id,
+    //         "slug"=>"life",
+    //         "body"=>"life is good"
+    //     ]);
 
     }
 }

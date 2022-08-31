@@ -90,8 +90,8 @@ Route::get('/categories/{category:slug}',function(Category $category){
     ]);
 });
 
-Route::get('/user/{user}',function(User $user){
+Route::get('/author/{author}',function(User $author){ //use username instead
     return view('hi',[
-        'blogs'=>$user->blog
+        'blogs'=>$author->blog
     ]);
 });
