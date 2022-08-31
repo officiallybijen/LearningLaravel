@@ -51,11 +51,11 @@ Route::get('/hi', function () {
     ]);
 });
 
-Route::get('/blog/{which}',function($id){
+Route::get('/blog/{blog:slug}',function(Blog $blog){
 
     //find post by its slug and pass it to view called post
 
-    $blog=Blog::find($id);
+    // $blog=Blog::find($blog)->first();
 
     return view('blog',[
         'blog'=>$blog

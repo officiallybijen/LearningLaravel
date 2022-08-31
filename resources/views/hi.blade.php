@@ -6,7 +6,7 @@
     </head>
     <body>
         @foreach($blogs as $blog)
-          <a href="/blog/{{$blog->id}}">{!! $blog->title !!}</a>
+          <a href="/blog/{{$blog->slug}}">{!! $blog->title !!}</a>
           <p>{!! $blog->body !!}</p>
         @endforeach
     </body>
