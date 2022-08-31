@@ -20,6 +20,10 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/hi', function () {
+    $blogs=Blog::with('category')->get();
+    return view('hi',[
+        'blogs'=>$blogs
+    ]);
     // $doc=YamlFrontMatter::parseFile(
     //     resource_path('blogs/firstblog.html')
     // );
@@ -27,7 +31,6 @@ Route::get('/hi', function () {
 
     // $files=File::files(resource_path("blogs"));
 
-    $blogs=Blog::all();
 
     // $blogs=array_map(function($file){
     //     $document = YamlFrontMatter::parseFile($file);
@@ -47,9 +50,6 @@ Route::get('/hi', function () {
     //     );
     // }
     // $blogs=Blog::all();
-    return view('hi',[
-        'blogs'=>$blogs
-    ]);
 });
 
 Route::get('/blog/{blog:slug}',function(Blog $blog){
