@@ -7,7 +7,7 @@
     <body>
         @foreach($blogs as $blog)
           <a href="/blog/{{$blog->slug}}">{!! $blog->title !!}</a>
-          <p>category:{{$blog->category->cat_name}}</p>
+          <p>category:<a href="/categories/{{$blog->category->slug}}">{{$blog->category->name}}</a></p>
           <p>{!! $blog->body !!}</p>
         @endforeach
     </body>
