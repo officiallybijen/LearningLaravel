@@ -23,7 +23,8 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 Route::get('/', function () {
     $blogs=Blog::with('category','author')->get();
     return view('hi',[
-        'blogs'=>$blogs
+        'blogs'=>$blogs,
+        'categories'=>Category::all()
     ]);
     // $doc=YamlFrontMatter::parseFile(
     //     resource_path('blogs/firstblog.html')
@@ -86,12 +87,16 @@ Route::get('/blog/{blog:slug}',function(Blog $blog){
 
 Route::get('/categories/{category:slug}',function(Category $category){
     return view('hi',[
-        'blogs'=>$category->blog->load(['category','author'])
+        'blogs'=>$category->blog->load(['category','author']),
+        'categories'=>Category::all(),
+        'currentCategory'=>$category
     ]);
 });
 
 Route::get('/author/{author}',function(User $author){ //use username instead
     return view('hi',[
-        'blogs'=>$author->blog->load(['category','author'])
+        'blogs'=>$author->blog->load(['category','author']),
+        'categories'=>Category::all()
+
     ]);
 });
