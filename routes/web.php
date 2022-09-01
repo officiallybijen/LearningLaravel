@@ -96,7 +96,7 @@ Route::get('/categories/{category:slug}',function(Category $category){
 Route::get('/author/{author}',function(User $author){ //use username instead
     return view('hi',[
         'blogs'=>$author->blog->load(['category','author']),
-        'categories'=>Category::all()
+        'categories'=>Category::all(),
 
     ]);
 });
