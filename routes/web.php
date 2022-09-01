@@ -21,7 +21,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/hi', function () {
-    $blogs=Blog::with('category')->get();
+    $blogs=Blog::with('category','author')->get();
     return view('hi',[
         'blogs'=>$blogs
     ]);
@@ -86,12 +86,12 @@ Route::get('/blog/{blog:slug}',function(Blog $blog){
 
 Route::get('/categories/{category:slug}',function(Category $category){
     return view('hi',[
-        'blogs'=>$category->blog
+        'blogs'=>$category->blog->load(['category','author'])
     ]);
 });
 
 Route::get('/author/{author}',function(User $author){ //use username instead
     return view('hi',[
-        'blogs'=>$author->blog
+        'blogs'=>$author->blog->load(['category','author'])
     ]);
 });
