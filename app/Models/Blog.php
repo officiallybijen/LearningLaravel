@@ -20,7 +20,8 @@ class Blog extends Model
                  $query
                  ->where('title', 'like', '%' . $search . '%')
                  ->orWhere('body', 'like', '%' . $search . '%');
-        });
+        
+   });
         // if ($filter['search']) {
         //     $query
         //         ->where('title', 'like', '%' . request('search') . '%')
