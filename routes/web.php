@@ -3,6 +3,7 @@
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Category;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -20,49 +21,14 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-    $blogs=Blog::with('category','author')->get();
-    return view('hi',[
-        'blogs'=>$blogs,
-        'categories'=>Category::all()
-    ]);
-    // $doc=YamlFrontMatter::parseFile(
-    //     resource_path('blogs/firstblog.html')
-    // );
+Route::get('/',[BlogController::class,'index']);
 
-
-    // $files=File::files(resource_path("blogs"));
-
-
-    // $blogs=array_map(function($file){
-    //     $document = YamlFrontMatter::parseFile($file);
-    //     return new Blog(
-    //         $document->title,
-    //         $document->slug,
-    //         $document->body()
-    //     );
-    // },$files);
-
-    // foreach($files as $file){
-    //     $document = YamlFrontMatter::parseFile($file);
-    //     $blog[] =new Blog(
-    //         $document->title,
-    //         $document->slug,
-    //         $document->body()
-    //     );
-    // }
-    // $blogs=Blog::all();
-});
-
-Route::get('/blog/{blog:slug}',function(Blog $blog){
+Route::get('/blog/{blog:slug}',[BlogController::class,'show'])->where('which','[A-z_\-0-9]+');
 
     //find post by its slug and pass it to view called post
 
     // $blog=Blog::find($blog)->first();    
 
-    return view('blog',[
-        'blog'=>$blog
-    ]);
 
     // $path = __DIR__ ."/../resources/blogs/$slug.html";
     
@@ -83,7 +49,7 @@ Route::get('/blog/{blog:slug}',function(Blog $blog){
 //     return view('blog',[
 //         'blog'=>$blog
 //     ]);
-})->where('which','[A-z_\-0-9]+');
+
 
 Route::get('/categories/{category:slug}',function(Category $category){
     return view('hi',[
