@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
+use function GuzzleHttp\Promise\all;
+
 class BlogController extends Controller
 {
     public function index()
@@ -44,6 +46,32 @@ class BlogController extends Controller
         //     );
         // }
         // $blogs=Blog::all();
+    }
+
+    public function create(){    
+        return view('blog.create');
+    }
+
+    public function store(){
+        $attributes = request()->validate([
+            'title'=>'required',
+            'body'=>'required',
+            'slug'=>'required',
+            'thumbnail'=>'required',
+            'category_id'=> 'required'
+        ]);
+        
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        $attributes['user_id'] = auth()->id();
+       
+        Blog::create($attributes);
+            // "title"=>request('title'),
+            // "body"=>request('body'),
+            // "slug"=>request('slug'),
+            // "category_id"=>request('category_id')
+        
+
+        return redirect('/')->with('success','new blog added');
     }
 
     public function show(Blog $blog){

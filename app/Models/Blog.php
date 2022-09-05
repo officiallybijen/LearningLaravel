@@ -14,7 +14,7 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $fillable=['body'];
+    protected $guarded=[];
 
     public function scopeFilter($query, array $filter){
         $query->when($filter['search'] ?? false,function($query, $search){

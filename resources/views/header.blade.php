@@ -14,10 +14,7 @@
         <!--  Category -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl">
             <x-dropdown :categories="$categories">
-
             </x-dropdown>
-
-
         </div>
 
         <!-- Other Filters -->

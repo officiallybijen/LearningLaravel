@@ -100,3 +100,8 @@ Route::get('/author/{author}',function(User $author){ //use username instead
     ]);
 });
 
+
+// admin
+
+Route::get('admin/posts/create',[BlogController::class,'create'])->middleware('admin');
+Route::post('admin/post/',[BlogController::class,'store'])->middleware('admin');
