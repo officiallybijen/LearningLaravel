@@ -49,15 +49,16 @@ Route::get('/blog/{blog:slug}',[BlogController::class,'show'])->where('which','[
 //     return view('blog',[
 //         'blog'=>$blog
 //     ]);
+// Route::get('/categories/{category:slug}',
 
 
-Route::get('/categories/{category:slug}',function(Category $category){
-    return view('hi',[
-        'blogs'=>$category->blog->load(['category','author']),
-        'categories'=>Category::all(),
-        'currentCategory'=>$category
-    ]);
-});
+// Route::get('/categories/{category:slug}',function(Category $category){
+//     return view('hi',[
+//         'blogs'=>$category->blog->load(['category','author']),
+//         'categories'=>Category::all(),
+//         'currentCategory'=>$category
+//     ]);
+// });
 
 Route::get('/author/{author}',function(User $author){ //use username instead
     return view('hi',[
