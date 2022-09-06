@@ -5,6 +5,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
@@ -15,10 +20,20 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            <div class="mt-8 md:mt-0" style="display: flex;">
+                @auth
+                    <a href="">Hello {{ auth()->user()->name }}</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <input type="submit" value="logout" style="margin-left: 10px;">
+                    </form>
+                @else
+                    <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                    <a href="/login" class="text-xs font-bold uppercase" style="margin-left: 10px">Login</a>
+                @endauth
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <a href="#newsletter"
+                    class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -34,19 +49,19 @@
             <div class="mt-10">
                 <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                    <form method="POST" action="#" class="lg:flex text-sm">
+                    <form method="POST" action="/newsletter" class="lg:flex text-sm" id="newsletter">
+                        @csrf
                         <div class="lg:py-3 lg:px-5 flex items-center">
                             <label for="email" class="hidden lg:inline-block">
                                 <img src="./images/mailbox-icon.svg" alt="mailbox letter">
                             </label>
 
-                            <input id="email" type="text" placeholder="Your email address"
-                                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                            <input id="email" type="text" placeholder="Your email address" name="email"
+                                class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                         </div>
 
                         <button type="submit"
-                                class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                        >
+                            class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
                             Subscribe
                         </button>
                     </form>
