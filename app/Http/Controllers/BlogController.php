@@ -15,10 +15,9 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::with('category', 'author')->filter(request(['search','category']))->paginate(5);
         return view('hi', [
-            'blogs' => $blogs,
-            'categories' => Category::all()
+            'blogs' => Blog::with('category', 'author')->filter(request(['search','category','author']))->paginate(5),
+            
         ]);
         // $doc=YamlFrontMatter::parseFile(
         //     resource_path('blogs/firstblog.html')

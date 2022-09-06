@@ -84,21 +84,20 @@ Route::post('/blog/{blog:slug}/comment',[CommentController::class,'store']);
 //     ]);
 
 
-Route::get('/categories/{category:slug}',function(Category $category){
-    return view('hi',[
-        'blogs'=>$category->blog->load(['category','author']),
-        'categories'=>Category::all(),
-        'currentCategory'=>$category
-    ]);
-});
+// Route::get('/categories/{category:slug}',function(Category $category){
+//     return view('hi',[
+//         'blogs'=>$category->blog->load(['category','author']),
+//         'categories'=>Category::all(),
+//         'currentCategory'=>$category
+//     ]);
+// });
 
-Route::get('/author/{author}',function(User $author){ //use username instead
-    return view('hi',[
-        'blogs'=>$author->blog->load(['category','author']),
-        'categories'=>Category::all(),
+// Route::get('/author/{author}',function(User $author){ //use username instead
+//     return view('hi',[
+//         'blogs'=>$author->blog->load(['category','author'])
 
-    ]);
-});
+//     ]);
+// });
 
 
 // admin

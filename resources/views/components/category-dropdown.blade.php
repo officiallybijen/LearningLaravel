@@ -1,10 +1,8 @@
-@props(['categories','currentCategory'])
 <div x-data="{show : false}" @click.away="show=false">
     <button @click = " show=true " class="px-8">{{ isset($currentCategory) ? $currentCategory->name : 'Category' }}</button>
     <div x-show="show">
         @foreach($categories as $category)                    
-            <a class="block hover:bg-gray-500 hover:text-white {{ isset($currentCategory) && $currentCategory->is($category) ? 'bg-gray-800 text-white' : '' }}" 
-                href="/?category={{$category->slug}}&{{ http_build_query(request()->except('cateogory')) }}">{{$category->name}}</a>
+            <a class="block hover:bg-gray-500 hover:text-white {{ isset($currentCategory) && $currentCategory->is($category) ? 'bg-gray-800 text-white' : '' }}" href="/?category={{$category->slug}}">{{$category->name}}</a>
         @endforeach
     </div>
 

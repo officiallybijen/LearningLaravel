@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 <style>
-    html{
+    html {
         scroll-behavior: smooth;
     }
 </style>
@@ -22,17 +22,18 @@
 
             <div class="mt-8 md:mt-0" style="display: flex;">
                 @auth
-                <a href="">Hello {{ auth()->user()->name }}</a>
-                <form action="/logout" method="post">
-                    @csrf
-                    <input type="submit" value="logout" style="margin-left: 10px;">
-                </form>
+                    <a href="">Hello {{ auth()->user()->name }}</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <input type="submit" value="logout" style="margin-left: 10px;">
+                    </form>
                 @else
-                <a href="/register" class="text-xs font-bold uppercase">Register</a>
-                <a href="/login" class="text-xs font-bold uppercase" style="margin-left: 10px">Login</a>
+                    <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                    <a href="/login" class="text-xs font-bold uppercase" style="margin-left: 10px">Login</a>
                 @endauth
 
-                <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <a href="#newsletter"
+                    class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -56,12 +57,11 @@
                             </label>
 
                             <input id="email" type="text" placeholder="Your email address" name="email"
-                                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                                class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                         </div>
 
                         <button type="submit"
-                                class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                        >
+                            class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
                             Subscribe
                         </button>
                     </form>
