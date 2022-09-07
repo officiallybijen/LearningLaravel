@@ -1,6 +1,7 @@
 <x-layout>
-    <form action="/admin/post" method="post" enctype="multipart/form-data" style="width: 50%;margin: 40px auto;">
+    <form action="/admin/posts/{{$blog->id}}" method="post" enctype="multipart/form-data" style="width: 50%;margin: 40px auto;">
         @csrf
+        @method('PATCH')
         {{-- <input type="text" name="title" value="{{ old('title') }}" placeholder="enter title"><br>
         @error('title')
             <p style="color:red;">
@@ -8,9 +9,8 @@
             </p>
         @enderror
         --}}
-        <legend>Add a new blog:</legend>
-        <fieldset>
-        <x-form.input name="title"/>
+        <legend>Edit blog named <b>{{ $blog->title }}</b></legend>
+        <x-form.input name="title" value="afafds"/>
         <x-form.input name="slug"/>
         <x-form.input name="thumbnail" type="file" />
       
@@ -22,9 +22,8 @@
             @endforeach
         </select>
         <br>
-        <x-form.btn class="btn btn-primary"> 
-            Publish
+        <x-form.btn class="btn btn-primary">
+            Submit
         </x-form.btn>
-    </fieldset>
     </form>
 </x-layout>

@@ -54,8 +54,8 @@
                 @auth
                 <form action="{{$blog->slug}}/comment" method="post"> 
                     @csrf
-                    <textarea required rows="5" cols="60" placeholder="Type your comment !!!!!" name="comment"></textarea><br> 
-                    <input type="submit">
+                    <textarea class="form-control" required rows="5" cols="60" placeholder="Type your comment !!!!!" name="comment"></textarea><br> 
+                    <input type="submit" class="btn btn-primary">
                 </form>
                 @error('comment')
                 <span style="color: red;">{{ $message }}</span>   

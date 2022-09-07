@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\SessionController;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use App\Http\Controllers\RegisterController;
@@ -101,6 +102,11 @@ Route::post('/blog/{blog:slug}/comment',[CommentController::class,'store']);
 
 
 // admin
+
+Route::get('admin/posts/',[AdminPostController::class,'index'])->middleware('admin');
+Route::get('admin/posts/{blog}/edit',[AdminPostController::class,'edit'])->middleware('admin');
+Route::patch('admin/posts/{blog}',[AdminPostController::class,'update'])->middleware('admin');
+Route::delete('admin/posts/{blog}',[AdminPostController::class,'destroy'])->middleware('admin');
 
 Route::get('admin/posts/create',[BlogController::class,'create'])->middleware('admin');
 Route::post('admin/post/',[BlogController::class,'store'])->middleware('admin');

@@ -1,6 +1,7 @@
 <!doctype html>
 
 <title>Laravel From Scratch Blog</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,17 +24,30 @@
             <div class="mt-8 md:mt-0" style="display: flex;">
                 @auth
                     <a href="">Hello {{ auth()->user()->name }}</a>
-                    <form action="/logout" method="post">
-                        @csrf
-                        <input type="submit" value="logout" style="margin-left: 10px;">
-                    </form>
+                    <div x-data="{ show: false }" @click.away="show=false">
+                        <button @click=" show=true " class="px-8">Admin</button>
+                        <div x-show="show" style="padding-left: 30px; position: absolute;">
+                            @can('admin')
+                            <a class="block hover:bg-gray-500 hover:text-white"
+                            href="">Dashboard</a>
+                            <a class="block hover:bg-gray-500 hover:text-white"
+                            href="/admin/posts">All Posts</a>
+                            <a class="block hover:bg-gray-500 hover:text-white"
+                            href="/admin/posts/create">New Blog</a>
+                            @endcan
+                            <form action="/logout" method="post">
+                                @csrf
+                                <input type="submit" value="logout" style="margin-left: 10px;">
+                            </form>
+                        </div>
+                    </div>
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="text-xs font-bold uppercase" style="margin-left: 10px">Login</a>
                 @endauth
 
                 <a href="#newsletter"
-                    class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-2 px-4">
                     Subscribe for Updates
                 </a>
             </div>

@@ -1,8 +1,8 @@
-@props(['name','type'=>'text'])
+@props(['name','type'=>'text','value'])
 
-<input type="{{ $type }}" name="{{$name}}" value="{{ old($name) }}" 
+<input class="form-control" type="{{ $type }}" name="{{$name}}" {{ $attributes(['value'=>old($name)]) }} 
 
-placeholder="enter {{$name}}" />
+placeholder="Enter {{$name}}" />
 <br>
 
 <x-form.error :name="$name" />
